@@ -1,0 +1,45 @@
+shaded_color:
+  class_name: ExampleAppColor
+  file_name: app_colors.dart
+  location: lib/presentation/theme/color/
+  swatch_prefix: $ShadedSwatch
+  colors:
+    red:
+      shade10:
+        hex: 0xFF132112
+        opacity: 1
+        primary: true
+      shade50:
+        hex: 0xff123112
+        rgb: 12, 12, 41
+        opacity: 0.5
+        alpha: 244
+    blue:
+      hex: 0xFF132131
+      rgb: 1, 1, 1
+      opacity: 0.5
+      alpha: 123
+    primary: red
+    yellow:
+      shade10:
+        hex: 0xFF132112
+        opacity: 1
+      shade50:
+        hex: 0xff123112
+        rgb: 12, 12, 41
+        opacity: 0.5
+        alpha: 244
+        primary: true
+    brown:
+      shade20:
+        hex: 0xFF132112
+        opacity: 1
+        primary: true
+      shade50:
+        rgb: 12, 12, 255
+        opacity: 0.5
+        alpha: 244
+    purple: 0xff123412
+    pink:
+      shade20: 0xff124912
+      shade10: 0xff123512
