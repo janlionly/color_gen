@@ -15,7 +15,7 @@ class ShadedSwatch implements SerializableConfig {
     final resolvedName = nameOverride ?? className;
     String content = "";
     for (var shade in shades) {
-      content += "Color get $shade => this[\"$shade\"]!;\n";
+      content += "Color get $shade => this['$shade']!;\n";
     }
     String resolved = '''
     class $resolvedName extends ColorSwatch<String> {

@@ -94,13 +94,13 @@ class MultiShadeColorConfig implements ColorConfig {
       final colorVarName =
           '_$resolvedVariableName${value.name.replaceRange(0, 1, value.name[0].toUpperCase())}';
       colorVariables += "${value.serialize(nameOverride: colorVarName)}\n";
-      mapContent += "\"${value.name}\" : $colorVarName,\n";
+      mapContent += "'${value.name}' : $colorVarName,\n";
     }
     String resultedSerialize = '''
     static final Map<String, Color> _${resolvedVariableName}ColorMap = {
     $mapContent
     };
-    static final $resolvedVariableName =  $shadedClassName(_${resolvedVariableName}ColorMap["$primaryName"]!.value, _${resolvedVariableName}ColorMap);
+    static final $resolvedVariableName =  $shadedClassName(_${resolvedVariableName}ColorMap['$primaryName']!.value, _${resolvedVariableName}ColorMap);
     ''';
     return "$colorVariables$resultedSerialize";
   }
