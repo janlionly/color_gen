@@ -1,5 +1,5 @@
 name: color_gen
-description: A starting point for Dart libraries or applications.
+description: Package to assist with color generation for your Flutter projects
 version: 0.0.1
 repository: https://github.com/SilentCatD/color_gen
 
