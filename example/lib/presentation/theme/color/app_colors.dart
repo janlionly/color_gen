@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 class ExampleAppColor {
   const ExampleAppColor._();
+
   static final primary = red;
   static final blue = Color(0xFF132131).withOpacity(0.5).withAlpha(123);
   static final purple = Color(0xFF123412);
@@ -54,18 +55,24 @@ class ExampleAppColor {
 
 class $ShadedSwatch0 extends ColorSwatch<String> {
   const $ShadedSwatch0(super.primary, super.swatch);
+
   Color get shade10 => this["shade10"]!;
+
   Color get shade50 => this["shade50"]!;
 }
 
 class $ShadedSwatch1 extends ColorSwatch<String> {
   const $ShadedSwatch1(super.primary, super.swatch);
+
   Color get shade20 => this["shade20"]!;
+
   Color get shade50 => this["shade50"]!;
 }
 
 class $ShadedSwatch2 extends ColorSwatch<String> {
   const $ShadedSwatch2(super.primary, super.swatch);
+
   Color get shade20 => this["shade20"]!;
+
   Color get shade10 => this["shade10"]!;
 }

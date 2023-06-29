@@ -34,12 +34,12 @@ class SingleColorConfig implements ColorConfig {
     if (mapData[ConfigKey.rgb] != null) {
       final splitInt = (mapData[ConfigKey.rgb].toString()).split(',');
       if (splitInt.length != 3) {
-        throw const PubspecFileHaveWrongFormat();
+        throw const YamlFileHaveWrongFormat();
       }
       for (var value in splitInt) {
         final parsed = int.tryParse(value.trim());
         if (parsed == null) {
-          throw const PubspecFileHaveWrongFormat();
+          throw const YamlFileHaveWrongFormat();
         }
         resolvedRbg ??= [];
         resolvedRbg.add(parsed);

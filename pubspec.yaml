@@ -1,6 +1,6 @@
 name: color_gen
-description: Package to assist with color generation for your Flutter projects
-version: 0.0.2
+description: Package to assist with Color and ColorSwatch generation for your Flutter projects
+version: 0.1.0
 repository: https://github.com/SilentCatD/color_gen
 
 environment:
@@ -10,9 +10,6 @@ dependencies:
   path: ^1.8.2
   yaml: ^3.1.2
   dart_style: ^2.3.1
-
-# dependencies:
-#   path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.0.0

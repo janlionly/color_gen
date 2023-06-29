@@ -1,7 +1,7 @@
-class PubspecFileNotFound {
+class YamlFileNotFound {
   final String fileName;
 
-  const PubspecFileNotFound({required this.fileName});
+  const YamlFileNotFound({required this.fileName});
 
   @override
   String toString() {
@@ -9,8 +9,8 @@ class PubspecFileNotFound {
   }
 }
 
-class PubspecFileHaveWrongFormat {
-  const PubspecFileHaveWrongFormat();
+class YamlFileHaveWrongFormat {
+  const YamlFileHaveWrongFormat();
 
   @override
   String toString() {
@@ -18,8 +18,7 @@ class PubspecFileHaveWrongFormat {
   }
 }
 
-
-class ColorNotExisted{
+class ColorNotExisted {
   const ColorNotExisted();
   @override
   String toString() {

@@ -2,7 +2,7 @@ const defaultPubspecFileName = 'color_gen.yaml';
 const defaultClassName = "AppColor";
 const defaultLocation = 'lib/generate/color/';
 const defaultFileName = 'colors.dart';
-const defaultShadedSwatchPrefix = '\$shadedSwatch';
+const defaultShadedSwatchPrefix = '\$ShadedSwatch';
 
 class ConfigKey {
   const ConfigKey._();

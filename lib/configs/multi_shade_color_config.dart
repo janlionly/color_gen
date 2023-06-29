@@ -35,7 +35,7 @@ class MultiShadeColorConfig implements ColorConfig {
     data.forEach((key, value) {
       final colorName = key;
       if (value is! YamlMap) {
-        throw const PubspecFileHaveWrongFormat();
+        throw const YamlFileHaveWrongFormat();
       }
       final YamlMap resolvedValue = value;
       final currentSet = resolvedValue.keys.toSet();
@@ -67,7 +67,7 @@ class MultiShadeColorConfig implements ColorConfig {
             singleShadeColorConfig
                 .add(SingleColorConfig.parseFromHex(name: key, data: value));
           } else {
-            throw const PubspecFileHaveWrongFormat();
+            throw const YamlFileHaveWrongFormat();
           }
         },
       );

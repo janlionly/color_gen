@@ -1,3 +1,3 @@
-abstract class SerializableConfig{
+abstract class SerializableConfig {
   String serialize({String? nameOverride});
 }

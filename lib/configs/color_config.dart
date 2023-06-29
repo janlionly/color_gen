@@ -1,4 +1,3 @@
-
 import 'serializable_config.dart';
 
-abstract class ColorConfig implements SerializableConfig{}
+abstract class ColorConfig implements SerializableConfig {}

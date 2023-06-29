@@ -17,12 +17,12 @@ class SharedColorGenerator {
     const yamlFileName = defaultPubspecFileName;
     final pubspecFile = getPubspecFile(fileName: yamlFileName);
     if (pubspecFile == null) {
-      throw const PubspecFileNotFound(fileName: yamlFileName);
+      throw const YamlFileNotFound(fileName: yamlFileName);
     }
     final pubspecFileContent = pubspecFile.readAsStringSync();
     final parsedYaml = yaml.loadYaml(pubspecFileContent);
     if (parsedYaml is! yaml.YamlMap) {
-      throw const PubspecFileHaveWrongFormat();
+      throw const YamlFileHaveWrongFormat();
     }
     final shadedColorConfig = parsedYaml.value[ConfigKey.shadedColor];
     final className =
@@ -36,7 +36,7 @@ class SharedColorGenerator {
             defaultShadedSwatchPrefix;
     final colors = shadedColorConfig[ConfigKey.colors];
     if (colors is! yaml.YamlMap) {
-      throw const PubspecFileHaveWrongFormat();
+      throw const YamlFileHaveWrongFormat();
     }
     final keyWords = {
       ConfigKey.hex,
@@ -69,7 +69,7 @@ class SharedColorGenerator {
       } else if (value is int) {
         singleColor.add(SingleColorConfig.parseFromHex(name: key, data: value));
       } else {
-        throw const PubspecFileHaveWrongFormat();
+        throw const YamlFileHaveWrongFormat();
       }
     });
     final parsedMultiShadeConfig = MultiShadeColorConfig.parseMultiShade(
@@ -117,7 +117,7 @@ class SharedColorGenerator {
 import 'package:flutter/material.dart';
 
 // **************************************************************************
-// Generator: Shaded Color Generator
+// Generator: Color Generator
 // Made by Silent Cat
 // **************************************************************************
 
