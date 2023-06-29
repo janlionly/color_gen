@@ -22,7 +22,7 @@ To perform `Color` and `ColorSwatch` generation, you may follow these steps:
 
 - Step 1: create `color_gen.yaml`. This is where you store all your color and color swatch configs.
 - Step 2: config the `color_gen.yaml` as your requirements.
-- Step 2: run the command:  `flutter pub run color_gen:generate`
+- Step 3: run the command:  `flutter pub run color_gen:generate`
 
 ### Config
 
