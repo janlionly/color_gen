@@ -1,3 +1,4 @@
+import 'package:color_gen/utils/utils.dart';
 import 'package:dart_style/dart_style.dart';
 
 import 'package:yaml/yaml.dart' as yaml;
@@ -19,11 +20,13 @@ class SharedColorGenerator {
     if (pubspecFile == null) {
       throw const YamlFileNotFound(fileName: yamlFileName);
     }
+    info("Loading YAML file...");
     final pubspecFileContent = pubspecFile.readAsStringSync();
     final parsedYaml = yaml.loadYaml(pubspecFileContent);
     if (parsedYaml is! yaml.YamlMap) {
       throw const YamlFileHaveWrongFormat();
     }
+    info("Parsing YAML file...");
     final shadedColorConfig = parsedYaml.value[ConfigKey.shadedColor];
     final className =
         (shadedColorConfig[ConfigKey.className] as String?) ?? defaultClassName;
@@ -52,6 +55,7 @@ class SharedColorGenerator {
     final List<ShadedSwatch> swatch = [];
     final List<MultiShadeColorConfig> multiShadeColor = [];
     final Map<String, dynamic> multiShadeColorMap = {};
+    info("Parsing colors...");
     resolvedColor.value.forEach((key, value) {
       if (value is String) {
         if (!allColors.contains(key)) {
@@ -82,6 +86,7 @@ class SharedColorGenerator {
       ...singleColor,
       ...multiShadeColor
     ];
+    info("Writing data...");
     await _writeData(
       className: className,
       location: location,
@@ -89,6 +94,7 @@ class SharedColorGenerator {
       swatch: swatch,
       fileName: fileName,
     );
+    info("Done");
   }
 
   Future<void> _writeData({
