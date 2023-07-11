@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Make generated color vars const
+
 ## 0.1.2
 
 - Update README

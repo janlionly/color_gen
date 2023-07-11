@@ -12,15 +12,18 @@ class SingleColorConfig implements ColorConfig {
   final int? alpha;
   final String name;
   final bool? primary;
+  late final String hexString;
 
-  const SingleColorConfig({
+  SingleColorConfig({
     this.alpha,
     this.hex,
     this.opacity,
     this.rgb,
     this.primary,
     required this.name,
-  }) : assert(hex != null || rgb != null);
+  }) : assert(hex != null || rgb != null) {
+    hexString = _parseHexString();
+  }
 
   static SingleColorConfig parseFromHex(
       {required String name, required int data}) {
@@ -59,27 +62,52 @@ class SingleColorConfig implements ColorConfig {
     );
   }
 
+  String _parseHexString() {
+    int red;
+    int green;
+    int blue;
+    int alpha;
+    if (hex != null) {
+      final colorValue = hex! & 0xFFFFFFFF;
+      alpha = (0xff000000 & colorValue) >> 24;
+      red = (0x00ff0000 & colorValue) >> 16;
+      green = (0x0000ff00 & colorValue) >> 8;
+      blue = (0x000000ff & colorValue) >> 0;
+    } else {
+      assert(rgb != null);
+      final resolvedRgb = rgb!;
+      red = resolvedRgb[0];
+      green = resolvedRgb[1];
+      blue = resolvedRgb[2];
+      alpha = 255;
+    }
+
+    if (opacity != null) {
+      alpha = (255.0 * opacity!).round();
+    }
+    if (this.alpha != null) {
+      alpha = this.alpha!;
+    }
+    final resolvedValue = (((alpha & 0xff) << 24) |
+            ((red & 0xff) << 16) |
+            ((green & 0xff) << 8) |
+            ((blue & 0xff) << 0)) &
+        0xFFFFFFFF;
+    String resolvedString =
+        "0x${resolvedValue.toRadixString(16).padLeft(4, '0')}";
+    return resolvedString.toUpperCase();
+  }
+
   @override
   String serialize({String? nameOverride}) {
-    String resolvedString = "static final ${nameOverride ?? name} = ";
-    if (hex != null) {
-      resolvedString +=
-          "Color(0x${hex!.toRadixString(16).padLeft(4, '0').toUpperCase()})";
-    } else {
-      resolvedString += "Color.fromRGBO(${rgb?[0]}, ${rgb?[1]}, ${rgb?[2]}, 1)";
-    }
-    if (opacity != null) {
-      resolvedString += ".withOpacity($opacity)";
-    }
-    if (alpha != null) {
-      resolvedString += ".withAlpha($alpha)";
-    }
-    return "$resolvedString;";
+    String resolvedString =
+        "static const ${nameOverride ?? name} = Color(${_parseHexString()});";
+    return resolvedString;
   }
 }
 
 void main() {
-  const testObject = SingleColorConfig(
-      name: "shade10", hex: 0xff123459, opacity: 0.5, alpha: 244);
+  final testObject = SingleColorConfig(name: "shade10", hex: 0xff123459);
   info(testObject.serialize());
+  info(testObject.hexString);
 }

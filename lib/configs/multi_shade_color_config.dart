@@ -41,7 +41,7 @@ class MultiShadeColorConfig implements ColorConfig {
       final currentSet = resolvedValue.keys.toSet();
       int? indexMatch;
       for (int i = 0; i < existedShade.length; i++) {
-        if (setEquals(existedShade[i], currentSet)) {
+        if (_setEquals(existedShade[i], currentSet)) {
           indexMatch = i;
           break;
         }
@@ -86,51 +86,51 @@ class MultiShadeColorConfig implements ColorConfig {
     final resolvedVariableName = nameOverride ?? variableName;
     String colorVariables = "";
     String mapContent = "";
-    String primaryName = "";
+    String primaryValue = "";
     for (var value in configs) {
-      if (value.primary == true || primaryName.isEmpty) {
-        primaryName = value.name;
-      }
       final colorVarName =
           '_$resolvedVariableName${value.name.replaceRange(0, 1, value.name[0].toUpperCase())}';
       colorVariables += "${value.serialize(nameOverride: colorVarName)}\n";
       mapContent += "'${value.name}' : $colorVarName,\n";
+      if (value.primary == true || primaryValue.isEmpty) {
+        primaryValue = value.hexString;
+      }
     }
     String resultedSerialize = '''
-    static final Map<String, Color> _${resolvedVariableName}ColorMap = {
+    static const Map<String, Color> _${resolvedVariableName}ColorMap = {
     $mapContent
     };
-    static final $resolvedVariableName =  $shadedClassName(_${resolvedVariableName}ColorMap['$primaryName']!.value, _${resolvedVariableName}ColorMap);
+    static const $resolvedVariableName =  $shadedClassName($primaryValue, _${resolvedVariableName}ColorMap);
     ''';
     return "$colorVariables$resultedSerialize";
   }
-}
 
-bool setEquals<T>(Set<T>? a, Set<T>? b) {
-  if (a == null) {
-    return b == null;
-  }
-  if (b == null || a.length != b.length) {
-    return false;
-  }
-  if (identical(a, b)) {
-    return true;
-  }
-  for (final T value in a) {
-    if (!b.contains(value)) {
+  static bool _setEquals<T>(Set<T>? a, Set<T>? b) {
+    if (a == null) {
+      return b == null;
+    }
+    if (b == null || a.length != b.length) {
       return false;
     }
+    if (identical(a, b)) {
+      return true;
+    }
+    for (final T value in a) {
+      if (!b.contains(value)) {
+        return false;
+      }
+    }
+    return true;
   }
-  return true;
 }
 
 void main() {
-  const testObject = MultiShadeColorConfig(
+  final testObject = MultiShadeColorConfig(
     shadedClassName: "\$TestColorClass",
     variableName: "red",
     configs: [
-      SingleColorConfig(name: "shade10", hex: 123),
       SingleColorConfig(name: "shade20", hex: 124),
+      SingleColorConfig(name: "shade10", hex: 123),
       SingleColorConfig(name: "shade30", hex: 125),
     ],
   );

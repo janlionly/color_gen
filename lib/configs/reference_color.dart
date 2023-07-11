@@ -11,6 +11,6 @@ class ReferenceColor implements ColorConfig {
 
   @override
   String serialize({String? nameOverride}) {
-    return "static final $colorName = $referencesColorNames;";
+    return "static const $colorName = $referencesColorNames;";
   }
 }
