@@ -4,6 +4,8 @@ shaded_color:
   location: lib/presentation/theme/color/
   swatch_prefix: $ShadedSwatch
   colors:
+    fixedAlpha:
+      alphaRed: 0x0DFF0000
     red:
       shade10:
         hex: 0xFF132112

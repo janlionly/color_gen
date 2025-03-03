@@ -94,7 +94,7 @@ class SingleColorConfig implements ColorConfig {
             ((blue & 0xff) << 0)) &
         0xFFFFFFFF;
     String resolvedString =
-        "0x${resolvedValue.toRadixString(16).padLeft(4, '0')}";
+        "0x${resolvedValue.toRadixString(16).padLeft(8, '0')}";
     return resolvedString.toUpperCase();
   }
 

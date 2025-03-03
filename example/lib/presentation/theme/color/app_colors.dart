@@ -16,50 +16,60 @@ class ExampleAppColor {
   static const primary = red;
   static const blue = Color(0X7B132131);
   static const purple = Color(0XFF123412);
+  static const _fixedAlphaAlphaRed = Color(0X0DFF0000);
+  static const Map<String, Color> _fixedAlphaColorMap = {
+    'alphaRed': _fixedAlphaAlphaRed,
+  };
+  static const fixedAlpha = $ShadedSwatch0(0X0DFF0000, _fixedAlphaColorMap);
   static const _redShade10 = Color(0XFF132112);
   static const _redShade50 = Color(0XF4123112);
   static const Map<String, Color> _redColorMap = {
     'shade10': _redShade10,
     'shade50': _redShade50,
   };
-  static const red = $ShadedSwatch0(0XFF132112, _redColorMap);
+  static const red = $ShadedSwatch1(0XFF132112, _redColorMap);
   static const _yellowShade10 = Color(0XFF132112);
   static const _yellowShade50 = Color(0XF4123112);
   static const Map<String, Color> _yellowColorMap = {
     'shade10': _yellowShade10,
     'shade50': _yellowShade50,
   };
-  static const yellow = $ShadedSwatch0(0XF4123112, _yellowColorMap);
+  static const yellow = $ShadedSwatch1(0XF4123112, _yellowColorMap);
   static const _brownShade20 = Color(0XFF132112);
   static const _brownShade50 = Color(0XF40C0CFF);
   static const Map<String, Color> _brownColorMap = {
     'shade20': _brownShade20,
     'shade50': _brownShade50,
   };
-  static const brown = $ShadedSwatch1(0XFF132112, _brownColorMap);
+  static const brown = $ShadedSwatch2(0XFF132112, _brownColorMap);
   static const _pinkShade20 = Color(0XFF124912);
   static const _pinkShade10 = Color(0XFF123512);
   static const Map<String, Color> _pinkColorMap = {
     'shade20': _pinkShade20,
     'shade10': _pinkShade10,
   };
-  static const pink = $ShadedSwatch2(0XFF124912, _pinkColorMap);
+  static const pink = $ShadedSwatch3(0XFF124912, _pinkColorMap);
 }
 
 class $ShadedSwatch0 extends ColorSwatch<String> {
   const $ShadedSwatch0(super.primary, super.swatch);
-  Color get shade10 => this['shade10']!;
-  Color get shade50 => this['shade50']!;
+  Color get alphaRed => this['alphaRed']!;
 }
 
 class $ShadedSwatch1 extends ColorSwatch<String> {
   const $ShadedSwatch1(super.primary, super.swatch);
-  Color get shade20 => this['shade20']!;
+  Color get shade10 => this['shade10']!;
   Color get shade50 => this['shade50']!;
 }
 
 class $ShadedSwatch2 extends ColorSwatch<String> {
   const $ShadedSwatch2(super.primary, super.swatch);
+  Color get shade20 => this['shade20']!;
+  Color get shade50 => this['shade50']!;
+}
+
+class $ShadedSwatch3 extends ColorSwatch<String> {
+  const $ShadedSwatch3(super.primary, super.swatch);
   Color get shade20 => this['shade20']!;
   Color get shade10 => this['shade10']!;
 }
